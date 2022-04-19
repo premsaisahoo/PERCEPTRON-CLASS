@@ -4,7 +4,7 @@ import joblib
 import numpy as np
 from matplotlib.colors import ListedColormap
 import os
-plt.style("fivethirtyeight")
+plt.style.use("fivethirtyeight")
 
 
 def prepare_data(df):
