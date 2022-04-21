@@ -28,3 +28,11 @@ BASICS OF PERCEPTRON CLASS
 
 git add . && git commit -m"docstring updated" && git push origin main
 9 history
+
+## ADD URL
+
+[git handbook](https://readme.so/editor)
+
+## ADD IMAGE
+
+![sample image](plots/and.png)
