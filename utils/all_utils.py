@@ -1,3 +1,4 @@
+import logging
 import matplotlib.pyplot as plt
 import pandas as pd
 import joblib
@@ -16,6 +17,8 @@ def prepare_data(df):
     Returns:
         tuple: it will return a tuple of dependent and independent variable
     """
+    logging.info(
+        "preparing the data by segregating the dependent and independent variables")
     X = df.drop("y", axis=1)
 
     y = df["y"]
@@ -30,11 +33,13 @@ def save_model(model, filename):
         model (trained model): it will save the trained model
         filename (string): file where trained model will be saved
     """
+    logging.info("saving the model in a file")
     model_dir = "models"
     # ONLY CREATE IF MODEL_DIR DOESN"T EXISTS
     os.makedirs(model_dir, exist_ok=True)
     filePath = os.path.join(model_dir, filename)  # model/filename
     joblib.dump(model, filePath)
+    logging.info(f"this is saving the model at {filePath}")
 
 
 def save_plot(df, file_name, model):
@@ -43,8 +48,10 @@ def save_plot(df, file_name, model):
         df (pandas dataframe): it a pandas dataframe      file_name (_type_): _description_
         model (string): trained
     """
+    logging.info("saving the model")
 
     def _create_base_plot(df):
+        logging.info("creating the base plots")
         df.plot(kind="scatter", x="x1", y="x2", c="y", s=100, cmap="winter")
         plt.axhline(y=0, color="black", linestyle="--", linewidth=1)
         plt.axvline(x=0, color="black", linestyle="--", linewidth=1)
@@ -52,6 +59,7 @@ def save_plot(df, file_name, model):
         figure.set_size_inches(10, 8)
 
     def _plot_decision_regions(X, y, classfier, resolution=0.02):
+        logging.info("plotting the decision regions")
         colors = ("red", "blue", "lightgreen", "gray", "cyan")
         cmap = ListedColormap(colors[: len(np.unique(y))])
 
@@ -83,3 +91,4 @@ def save_plot(df, file_name, model):
     os.makedirs(plot_dir, exist_ok=True)
     plotPath = os.path.join(plot_dir, file_name)  # model/filename
     plt.savefig(plotPath)
+    logging.info("saving the info at {plotPath}")
