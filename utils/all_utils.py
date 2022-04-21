@@ -38,6 +38,11 @@ def save_model(model, filename):
 
 
 def save_plot(df, file_name, model):
+    """it will save the plot
+    Args:
+        df (pandas dataframe): it a pandas dataframe      file_name (_type_): _description_
+        model (string): trained
+    """
 
     def _create_base_plot(df):
         df.plot(kind="scatter", x="x1", y="x2", c="y", s=100, cmap="winter")
